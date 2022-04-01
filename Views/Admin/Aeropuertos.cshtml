@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AirTiquiciaTry.Models.AeropuertosModel>
+
+<p>
+    <a asp-action="AgregarAeropuerto" asp-controller="Admin">Agregar Aeropuerto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cod_iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_aeropuerto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cod_pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_pais)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_aeropuerto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cod_pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_pais)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
