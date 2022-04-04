@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<AirTiquiciaTry.Models.AeropuertosModel>
 
-<p>
-    <a asp-action="AgregarAeropuerto" asp-controller="Admin">Agregar Aeropuerto</a>
-</p>
+    <h2 class="mb-3">Lista de Aeropuertos de AirTiquicia</h2>
 <table class="table">
     <thead>
         <tr>
@@ -37,11 +35,16 @@
                 @Html.DisplayFor(modelItem => item.nombre_pais)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Editar", "EditarAeropuerto", new {cod=@item.cod_iata}) |
+                @Html.ActionLink("Detalles", "DetallesAeropuerto", new {cod=@item.cod_iata}) |
+                @Html.ActionLink("Eliminar", "DeleteAeropuerto", new {cod=@item.cod_iata})
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<p>
+    <a asp-action="AgregarAeropuerto" asp-controller="Admin" class="btn btn-success">Agregar Aeropuerto</a>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
+</p>

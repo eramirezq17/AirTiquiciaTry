@@ -1,0 +1,35 @@
+﻿@model AirTiquiciaTry.Models.AeropuertosModel
+
+<div>
+    <h4>Detalles Aeropuerto @Model.cod_iata</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cod_iata)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cod_iata)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre_aeropuerto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre_aeropuerto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cod_pais)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cod_pais)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre_pais)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre_pais)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Aeropuertos" class="btn btn-primary">Regresar a la Lista</a>
+</div>

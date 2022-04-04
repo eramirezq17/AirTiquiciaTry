@@ -1,8 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Air Tiquicia";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="jumbotron">
+  <h1 class="display-4">Bienvenido a Air Tiquicia!</h1>
+  <p class="lead">La Aerolinea preferida de los ticos!</p>
+  <hr class="my-4">
+  
+
+  @if(!User.Identity.IsAuthenticated)
+ {
+<a class="btn btn-primary btn-lg" href="/Login" role="button">Iniciar Sesión</a>
+}

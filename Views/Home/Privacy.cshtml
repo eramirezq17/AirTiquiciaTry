@@ -3,4 +3,15 @@
 }
 <h1>@ViewData["Title"]</h1>
 
+<h2>Bienvenido @User.Identity.Name</h2>
+
+<ul>
+@foreach (var c in User.Claims)
+    {
+        <li>@c.Type: @c.Value</li>
+    }
+</ul>
+
 <p>Use this page to detail your site's privacy policy.</p>
+
+

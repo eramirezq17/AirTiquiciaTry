@@ -1,0 +1,40 @@
+﻿@model AirTiquiciaTry.Models.AvionesModel
+
+<h4>Nuevo Avion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ProcessAgregarAvion">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="marca" class="control-label">Marca</label>
+                <input asp-for="marca" class="form-control" />
+                <span asp-validation-for="marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="modelo" class="control-label">Modelo</label>
+                <input asp-for="modelo" class="form-control" />
+                <span asp-validation-for="modelo" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="id_tipo_avion" class="control-label">Seleccione el tipo de Avion</label>
+               <select asp-for="id_tipo_avion" id=id_tipo_avion name="id_tipo_avion" class="form-control">
+                <option value="1">Grande</option>
+                <option value="2">Mediano</option>
+                <option value="3">Pequeno</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-success mb-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Aviones" class="btn btn-primary">Regresar a la Lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

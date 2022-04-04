@@ -6,20 +6,24 @@ namespace AirTiquiciaTry.Models
     public class AeropuertosModel
     {
        [DisplayName("Codigo Aeropuerto")]
-       [Required]
-        
+       [Key]
+        [Required(ErrorMessage = "El codigo de aeropuerto es requerido")]
+        [StringLength(maximumLength: 3, MinimumLength = 3, ErrorMessage = "El codigo de aeropuerto debe tener 3 caracteres")]
+        [DisplayFormat()]
         public string cod_iata { get; set; }
 
         [DisplayName("Nombre Aeropuerto")]
-        [Required]
+        [Required(ErrorMessage = "El nombre del aeropuerto es requerido")]
         public string nombre_aeropuerto { get; set; }
 
         [DisplayName("Codigo Pais")]
-        [Required]
-        public  string cod_pais { get; set; }
+        [Required(ErrorMessage = "El codigo de pais es requerido")]
+        [StringLength(maximumLength: 2, MinimumLength = 2, ErrorMessage = "El codigo de pais debe tener 2 caracteres")]
+
+        public string cod_pais { get; set; }
 
         [DisplayName("Nombre Pais")]
-        [Required]
+        [Required(ErrorMessage = "El nombre de pais es requerido")]
         public string nombre_pais { get; set; }
 
     }

@@ -8,10 +8,10 @@ namespace AirTiquiciaTry.Services
 
         List<AeropuertosModel> SearchAeropuertos(string searchTerm);
 
-        AeropuertosModel GetAeropuertoById(int id);
+        AeropuertosModel GetAeropuertoById(string id);
 
-        int Insert(AeropuertosModel aeropuerto);
-        int Delete(AeropuertosModel aeropuerto);
-        int Update(AeropuertosModel aeropuerto);
+        String Insert(AeropuertosModel aeropuerto);
+        String Delete(AeropuertosModel aeropuerto);
+        String Update(AeropuertosModel aeropuerto);
     }
 }

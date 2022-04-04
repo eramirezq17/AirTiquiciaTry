@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AirTiquiciaTry.Models.VuelosModel>
+
+    <h2 class="mb-3">Vuelos disponibles AirTiquicia</h2>
+
+
+    <div class="container d-flex flex">
+@foreach (var item in Model)
+{
+    <div class="card mb-3 me-3" style="width: 18rem;">
+        <h5 class="card-header text-center bg-info">Vuelo @item.id_vuelo</h5>
+  <div class="card-body">
+    
+    <p class="card-text">Fecha: @item.fecha_hora</p>
+    <p class="card-text">Destino: @item.destino_pais</p>
+    <p class="card-text">Precios desde: @item.precio_economica</p>
+    <a href="/Admin/DetallesVuelo/@item.id_vuelo" class="btn btn-warning">Ver Detalles</a>
+  </div>
+</div>
+}
+</div>
+
+<p>
+    <a asp-action="AgregarVuelo" class="btn btn-success">Agregar Vuelo</a>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
+</p>

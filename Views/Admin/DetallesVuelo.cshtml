@@ -1,0 +1,149 @@
+﻿@model AirTiquiciaTry.Models.VuelosModel
+
+<div>
+    <h4>Detalles del vuelo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.id_vuelo)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.id_vuelo)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.fecha_hora)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.fecha_hora)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.es_directo)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.es_directo)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.id_avion)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.id_avion)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.origen_iata)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.origen_iata)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.origen_iata_nombre)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.origen_iata_nombre)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.origen_pais)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.origen_pais)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.destino_iata)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.destino_iata)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.destino_iata_nombre)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.destino_iata_nombre)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.destino_pais)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.destino_pais)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.duracion)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.duracion)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.id_capitan)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.id_capitan)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.nombre_capitan)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.nombre_capitan)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.apellido_capitan)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.apellido_capitan)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.id_copiloto)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.id_copiloto)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.nombre_copiloto)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.nombre_copiloto)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.apellido_copiloto)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.apellido_copiloto)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.id_tripulante_cabina)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.id_tripulante_cabina)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.nombre_tripulante_cabina)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.nombre_tripulante_cabina)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.apellido_tripulante_cabina)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.apellido_tripulante_cabina)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.precio_economica)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.precio_economica)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.precio_primera)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.precio_primera)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.precio_equipaje_kilo)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.precio_equipaje_kilo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Vuelos" class="btn btn-primary">Regresar a la Lista</a>
+</div>

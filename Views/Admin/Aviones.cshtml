@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AirTiquiciaTry.Models.AvionesModel>
+
+    <h2 class="mb-3">Lista de Aviones de AirTiquicia</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_avion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_tipo_avion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_avion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_tipo_avion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarAvion", new {cod=@item.id_avion}) |
+                @Html.ActionLink("Detalles", "DetallesAvion", new {cod=@item.id_avion}) |
+                @Html.ActionLink("Eliminar", "DeleteAvion", new {cod=@item.id_avion})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-action="AgregarAvion" class="btn btn-success">Agregar Avion</a>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
+</p>
