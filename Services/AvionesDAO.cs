@@ -29,6 +29,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return avionesFound;
         }
@@ -49,6 +53,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return new_id_avion;
@@ -79,6 +87,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return foundAvion;
         }
@@ -105,6 +117,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return new_id_avion;
         }
@@ -129,6 +145,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return foundAviones;
@@ -155,6 +175,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return new_id_avion;

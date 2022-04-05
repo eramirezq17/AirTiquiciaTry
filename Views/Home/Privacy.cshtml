@@ -1,17 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
 
-<h2>Bienvenido @User.Identity.Name</h2>
+<h1 class="text-info">Bienvenid@@ @User.Identity.Name</h1>
 
-<ul>
-@foreach (var c in User.Claims)
-    {
-        <li>@c.Type: @c.Value</li>
-    }
-</ul>
+<hr></hr>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<h4>En AirTiquicia nos aseguramos de mantener sus datos personales protegidos.</h4>
 
 

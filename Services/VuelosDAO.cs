@@ -30,6 +30,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return vuelosFound;
         }
@@ -57,6 +61,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return foundVuelo;
@@ -91,6 +99,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return new_id_vuelo;

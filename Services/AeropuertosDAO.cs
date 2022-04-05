@@ -24,6 +24,9 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally {
+                    connection.Close();
+                }
             }
             return new_cod_iata;
         }
@@ -47,6 +50,10 @@ namespace AirTiquiciaTry.Services
                 }
                 catch (Exception ex) {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return aeropuertosFound;
@@ -75,6 +82,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return foundAeropuerto;
         }
@@ -101,6 +112,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return new_cod_iata;
         }
@@ -125,6 +140,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return foundAeropuertos;
@@ -151,6 +170,10 @@ namespace AirTiquiciaTry.Services
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
             return new_cod_iata;

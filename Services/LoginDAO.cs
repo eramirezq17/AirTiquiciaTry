@@ -31,6 +31,10 @@ namespace AirTiquiciaTry.Services
                 {
                     Console.WriteLine(ex.Message);
                 }
+                finally
+                {
+                    connection.Close();
+                }
             }
             return usuarioFound;
         }
