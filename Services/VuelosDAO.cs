@@ -38,7 +38,37 @@ namespace AirTiquiciaTry.Services
             return vuelosFound;
         }
 
+        public List<VuelosModel> GetVuelosByDate(DateTime fecha, string origen_iata, string destino_iata)
+        {
+            List<VuelosModel> vuelosFound = new List<VuelosModel>();
 
+            string sqlStatement = "SELECT dbo.VUELOS.id_vuelo, dbo.VUELOS.fecha_hora, dbo.VUELOS.es_directo, dbo.VUELOS.id_avion, dbo.VUELOS.origen_iata, origen.nombre_aeropuerto, origen.nombre_pais, dbo.VUELOS.destino_iata, destino.nombre_aeropuerto, destino.nombre_pais, dbo.VUELOS.duracion, dbo.VUELOS.id_capitan, capitan.nombre, capitan.apellido1, dbo.VUELOS.id_copiloto, copiloto.nombre, copiloto.apellido1, dbo.VUELOS.id_tripulante_cabina, tripulante.nombre, tripulante.apellido1, dbo.VUELOS.precio_economica, dbo.VUELOS.precio_primera, dbo.VUELOS.precio_equipaje_kilo FROM dbo.VUELOS INNER JOIN dbo.AEROPUERTOS origen ON dbo.VUELOS.origen_iata = origen.cod_iata INNER JOIN dbo.AEROPUERTOS destino ON dbo.VUELOS.destino_iata = destino.cod_iata INNER JOIN dbo.EMPLEADOS capitan ON dbo.VUELOS.id_capitan = capitan.id_empleado INNER JOIN dbo.EMPLEADOS copiloto ON dbo.VUELOS.id_copiloto = copiloto.id_empleado INNER JOIN dbo.EMPLEADOS tripulante ON dbo.VUELOS.id_tripulante_cabina = tripulante.id_empleado WHERE dbo.VUELOS.fecha_hora > @fecha AND origen_iata = @origen_iata AND destino_iata = @destino_iata";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.AddWithValue("@fecha", fecha);
+                command.Parameters.AddWithValue("@origen_iata", origen_iata);
+                command.Parameters.AddWithValue("@destino_iata", destino_iata);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        vuelosFound.Add(new VuelosModel { id_vuelo = (string)reader[0], fecha_hora = (DateTime)reader[1], es_directo = (string)reader[2], id_avion = (int)reader[3], origen_iata = (string)reader[4], origen_iata_nombre = (string)reader[5], origen_pais = (string)reader[6], destino_iata = (string)reader[7], destino_iata_nombre = (string)reader[8], destino_pais = (string)reader[9], duracion = (string)reader[10], id_capitan = (int)reader[11], nombre_capitan = (string)reader[12], apellido_capitan = (string)reader[13], id_copiloto = (int)reader[14], nombre_copiloto = (string)reader[15], apellido_copiloto = (string)reader[16], id_tripulante_cabina = (int)reader[17], nombre_tripulante_cabina = (string)reader[18], apellido_tripulante_cabina = (string)reader[19], precio_economica = (int)reader[20], precio_primera = (int)reader[21], precio_equipaje_kilo = (int)reader[22] });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return vuelosFound;
+        }
         public VuelosModel GetVueloById(string cod)
         {
             VuelosModel foundVuelo = null;

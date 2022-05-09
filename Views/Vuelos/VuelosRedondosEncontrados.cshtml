@@ -1,0 +1,203 @@
+﻿@{
+    var ida = TempData["ida"] as string;
+}
+
+@model IEnumerable<AirTiquiciaTry.Models.VuelosModel>
+<h4>Vuelos de Salida</h4>
+<form asp-action="ReservarRedondo">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_vuelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.es_directo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_iata_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_iata_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.duracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_economica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_primera)
+             <th>
+                Elija un vuelo de salida
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    @if (item.origen_iata == @ida)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_vuelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.es_directo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_iata_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_iata_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duracion)
+            </td>
+            <td>
+                $@item.precio_economica
+            </td>
+            <td>
+                $@item.precio_primera
+            </td>
+            <td>
+                <div>
+                <input type="radio" value=@item.id_vuelo name="vuelo_ida" id="vuelo_ida" required></input>
+                </div>
+            </td>
+        </tr>
+        }
+}
+    </tbody>
+</table>
+
+<h4>Vuelos de Regreso</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_vuelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.es_directo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_iata_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.origen_pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_iata_nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.destino_pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.duracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_economica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio_primera)
+             <th>
+                Elija un vuelo de salida
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+     @if (item.origen_iata != @ida)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_vuelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.es_directo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_iata_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.origen_pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_iata_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.destino_pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duracion)
+            </td>
+            <td>
+                $@item.precio_economica
+            </td>
+            <td>
+                $@item.precio_primera
+            </td>
+            <td>
+                <div>
+                <input type="radio" value=@item.id_vuelo name="vuelo_regreso" name="vuelo_regreso" required></input>
+                </div>
+            </td>
+        </tr>
+}}
+    </tbody>
+</table>
+  <div class="form-group">
+                <input type="submit" value="Reservar" class="btn btn-success mb-3" />
+            </div>
+</form>
+<a class="btn btn-danger" asp-action="BuscarVueloSencillo">Cancelar</a>
+

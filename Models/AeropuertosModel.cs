@@ -26,5 +26,16 @@ namespace AirTiquiciaTry.Models
         [Required(ErrorMessage = "El nombre de pais es requerido")]
         public string nombre_pais { get; set; }
 
+
+        public string fullDesc
+        {
+            get
+            {
+                return nombre_pais + " - " + cod_iata + " - " + nombre_aeropuerto;
+            }
+
+        }
+
+
     }
 }

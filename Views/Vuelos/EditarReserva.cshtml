@@ -1,0 +1,72 @@
+﻿@model AirTiquiciaTry.Models.ViewModelReserva
+
+<h4>Detalles Pasajero</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ConfirmacionReserva">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id_pasajero" class="control-label"></label>
+                <input asp-for="id_pasajero" class="form-control" value="@Model.id_pasajero"/>
+                <span asp-validation-for="id_pasajero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" value="@Model.nombre" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido1" class="control-label"></label>
+                <input asp-for="apellido1" class="form-control" value="@Model.apellido1"/>
+                <span asp-validation-for="apellido1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apellido2" class="control-label"></label>
+                <input asp-for="apellido2" class="form-control" value="@Model.apellido2"/>
+                <span asp-validation-for="apellido2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecha_nac" class="control-label"></label>
+                <input type="datetime" asp-for="fecha_nac" class="form-control" value="@Model.fecha_nac.ToString("MM/dd/yyyy")"/>
+                <span asp-validation-for="fecha_nac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="correo" class="control-label"></label>
+                <input asp-for="correo" class="form-control" value="@Model.correo"/>
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="telefono" class="control-label"></label>
+                <input asp-for="telefono" class="form-control" value="@Model.telefono"/>
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+            <p class="">Seleccione el Asiento</p>
+          @Html.DropDownList("asiento", ViewBag.listaAsientosDisponibles as SelectList, "Seleccione su asiento", new {@class = "form-control mb-3"})
+          @Html.ValidationMessageFor(model=>model.asiento,"",new {@class = "text-danger"})   
+      </div>
+            <div class="form-group">
+                <label asp-for="cant_maletas_extra" class="control-label">Cantidad de Maletas Adicionales</label>
+               <select asp-for="cant_maletas_extra" id="cant_maletas_extra" name="cant_maletas_extra" class="form-control mb-3">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <span asp-validation-for="cant_maletas_extra" class="text-danger"></span>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Verificar" class="btn btn-success mb-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-danger" asp-action="BuscarVueloSencillo">Cancelar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

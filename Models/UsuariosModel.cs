@@ -27,7 +27,7 @@ namespace AirTiquiciaTry.Models
         public string apellido2 { get; set; }
 
         [DisplayName("Correo electrónico (email)")]
-        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}]", ErrorMessage = "Formato Invalido, favor ingresar un correo electrónico")]
+        [RegularExpression(@"^[\w-_]+(\.[\w!#$%'*+\/=?\^`{|}]+)*@((([\-\w]+\.)+[a-zA-Z]{2,20})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$", ErrorMessage = "Formato de correo invalido")]
         [Required]
 
         public string email { get; set; }

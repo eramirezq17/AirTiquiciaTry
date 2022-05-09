@@ -1,14 +1,33 @@
-﻿@{
+﻿@model AirTiquiciaTry.Models.VuelosModel
+@{
     ViewData["Title"] = "Air Tiquicia";
+    DateTime fechaSalida = DateTime.Today;
 }
 
 <div class="jumbotron">
   <h1 class="display-4">Bienvenido a Air Tiquicia!</h1>
   <p class="lead">La Aerolinea preferida de los ticos!</p>
   <hr class="my-4">
-  
 
-  @if(!User.Identity.IsAuthenticated)
- {
-<a class="btn btn-primary btn-lg" href="/Login" role="button">Iniciar Sesión</a>
-}
+</div>
+
+<div class="container d-flex flex justify-content-center">
+   <div class="card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="/Content/Images/oneway.png" alt="Sencillo">
+  <div class="card-body">
+    <h5 class="card-title text-warning">Viaje Sencillo (Solo ida)</h5>
+    <p class="card-text">Desde esta area podrás agendar vuelos sencillos, seleccionando unicamente la salida</p>
+    <a href="/Vuelos/BuscarVueloSencillo" class="btn btn-primary text-center">Buscar Vuelos</a>
+  </div>
+  </div>
+
+   <div class="card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="/Content/Images/roundtrip.jpg" alt="Retorno">
+  <div class="card-body">
+    <h5 class="card-title text-warning">Viaje Redondo (ida y vuelta)</h5>
+    <p class="card-text">Desde esta area podrás agendar vuelos redondos, seleccionando la salida y el retorno</p>
+    <a href="/Vuelos/BuscarVueloRedondo" class="btn btn-primary text-center">Buscar Vuelos</a>
+  </div>
+  </div>
+
+</div>

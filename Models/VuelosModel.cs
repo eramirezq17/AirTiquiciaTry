@@ -6,7 +6,6 @@ namespace AirTiquiciaTry.Models
     public class VuelosModel
     {
      [Key]
-        [RegularExpression("[AT]+[0-9]{3}]", ErrorMessage = "El formato de los vuelos es: AT### (donde # puede ser cualquier digito del 0 al 9)")]
         [Required]
         [DisplayName("ID Vuelo")]
         public string id_vuelo { get; set; }
@@ -23,7 +22,7 @@ namespace AirTiquiciaTry.Models
         [DisplayName("ID del Avión")]
         public int id_avion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe elegir el aeropuerto de salida")]
         [DisplayName("Código IATA del Aeropuerto Origen")]
         public string origen_iata { get; set; }
 
@@ -35,7 +34,7 @@ namespace AirTiquiciaTry.Models
         [DisplayName("País del Aeropuerto Origen")]
         public string origen_pais { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe elegir el aeropuerto de Destino")]
         [DisplayName("Código IATA del Aeropuerto Destino")]
         public string destino_iata { get; set; }
 
@@ -101,5 +100,17 @@ namespace AirTiquiciaTry.Models
         [Required]
         [DisplayName("Precio del equipaje extra por kilo (en US dólares)")]
         public int precio_equipaje_kilo { get; set; }
+
+
+        [Required(ErrorMessage = "Campo requerido")]
+        [DisplayName("Fecha de Salida")]
+        public DateTime fechaSalida { get; set; }
+
+
+        [Required]
+        [DisplayName("Fecha de Regreso")]
+        public DateTime fechaRegreso    { get; set; }
+
+        public string tipo_vuelo { get; set; }
     }
 }

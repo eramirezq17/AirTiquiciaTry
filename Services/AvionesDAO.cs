@@ -22,7 +22,7 @@ namespace AirTiquiciaTry.Services
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                       avionesFound.Add(new AvionesModel { id_avion = (int)reader[0], id_tipo_avion = (int)reader[1], marca = (string)reader[2], modelo = (string)reader[3], nombre_tipo_avion = (string)reader[4] });
+                        avionesFound.Add(new AvionesModel { id_avion = (int)reader[0], id_tipo_avion = (int)reader[1], marca = (string)reader[2], modelo = (string)reader[3], nombre_tipo_avion = (string)reader[4] });
                     }
                 }
                 catch (Exception ex)
@@ -36,7 +36,7 @@ namespace AirTiquiciaTry.Services
             }
             return avionesFound;
         }
-        
+
         public int Delete(AvionesModel avion)
         {
             int new_id_avion = -1;
@@ -62,8 +62,8 @@ namespace AirTiquiciaTry.Services
             return new_id_avion;
         }
 
-       
-        
+
+
         public AvionesModel GetAvionById(int cod)
         {
             AvionesModel foundAvion = null;
@@ -95,7 +95,7 @@ namespace AirTiquiciaTry.Services
             return foundAvion;
         }
 
-        
+
         public int Insert(AvionesModel avion)
         {
             int new_id_avion = -1;
@@ -110,7 +110,7 @@ namespace AirTiquiciaTry.Services
                 try
                 {
                     connection.Open();
-                    new_id_avion = Convert.ToInt32 (command.ExecuteScalar());
+                    new_id_avion = Convert.ToInt32(command.ExecuteScalar());
 
                 }
                 catch (Exception ex)
@@ -124,7 +124,7 @@ namespace AirTiquiciaTry.Services
             }
             return new_id_avion;
         }
-        
+
         public List<AvionesModel> SearchAviones(string searchTerm)
         {
             List<AvionesModel> foundAviones = new List<AvionesModel>();
@@ -153,7 +153,7 @@ namespace AirTiquiciaTry.Services
             }
             return foundAviones;
         }
-        
+
         public int Update(AvionesModel avion)
         {
             int new_id_avion = -1;
@@ -169,8 +169,8 @@ namespace AirTiquiciaTry.Services
                 try
                 {
                     connection.Open();
-                    new_id_avion = Convert.ToInt32 (command.ExecuteScalar());
-                   
+                    new_id_avion = Convert.ToInt32(command.ExecuteScalar());
+
                 }
                 catch (Exception ex)
                 {
@@ -183,8 +183,180 @@ namespace AirTiquiciaTry.Services
             }
             return new_id_avion;
         }
-        
+
+        public List<String> GetListaAsientos(string id_vuelo)
+        {
+            List<String> listaAsientos = new List<String>();
+            int tipoAvion = 0;
+            int totalFilas = 0;
+            string sqlStatement = "SELECT dbo.AVIONES.id_tipo_avion FROM dbo.AVIONES JOIN dbo.VUELOS ON dbo.AVIONES.id_avion = dbo.VUELOS.id_avion WHERE dbo.VUELOS.id_vuelo = @id_vuelo";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.AddWithValue("@id_vuelo", id_vuelo);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        tipoAvion = (int)reader[0];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                if (tipoAvion == 1)
+                {
+                    totalFilas = 42;
+                }
+                else if (tipoAvion == 2)
+                {
+                    totalFilas = 38;
+                }
+                else if (tipoAvion == 3)
+                {
+                    totalFilas = 20;
+                }
+                if (tipoAvion == 3)
+                {
+                    for (int i = 1; i <= totalFilas; i++)
+                    {
+                        listaAsientos.Add(i + "A");
+                        listaAsientos.Add(i + "B");
+                        listaAsientos.Add(i + "C");
+                        listaAsientos.Add(i + "D");
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i <= totalFilas; i++)
+                    {
+                        listaAsientos.Add(i + "A");
+                        listaAsientos.Add(i + "B");
+                        listaAsientos.Add(i + "C");
+                        listaAsientos.Add(i + "D");
+                        listaAsientos.Add(i + "E");
+                        listaAsientos.Add(i + "F");
+                    }
+                }
+            }
+            return listaAsientos;
+        }
+
+        public List<String> GetAsientosReservados(string id_vuelo)
+        {
+            List<String> AsientosReservados = new List<String>();
+            string sqlStatement = "SELECT dbo.RESERVAS.asiento FROM dbo.RESERVAS WHERE dbo.RESERVAS.id_vuelo = @id_vuelo";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.AddWithValue("@id_vuelo", id_vuelo);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        AsientosReservados.Add((string)reader[0]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
+            return AsientosReservados;
+        }
+
+        public List<String> GetAsientosDisponibles(string id_vuelo)
+        {
+            List<String> AsientosDisponibles = new List<String>();
+            AsientosDisponibles = GetListaAsientos(id_vuelo).Except(GetAsientosReservados(id_vuelo)).ToList();
+            return AsientosDisponibles;
+        }
+
+        public int GetPrecioTiquete(string id_vuelo, string asiento, int precio_economica, int precio_primera)
+        {
+            List<String> AsientosPrimera = new List<String>();
+            int tipoAvion = 0;
+            int precioTiquete = 0;
+            bool esPrimera = false;
+            string sqlStatement = "SELECT dbo.AVIONES.id_tipo_avion FROM dbo.AVIONES JOIN dbo.VUELOS ON dbo.AVIONES.id_avion = dbo.VUELOS.id_avion WHERE dbo.VUELOS.id_vuelo = @id_vuelo";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, connection);
+                command.Parameters.AddWithValue("@id_vuelo", id_vuelo);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        tipoAvion = (int)reader[0];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                if (tipoAvion == 1)
+                {
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        AsientosPrimera.Add(i + "A");
+                        AsientosPrimera.Add(i + "B");
+                        AsientosPrimera.Add(i + "C");
+                        AsientosPrimera.Add(i + "D");
+                        AsientosPrimera.Add(i + "E");
+                        AsientosPrimera.Add(i + "F");
+                    }
+                }
+                else if (tipoAvion == 2)
+                {
+                    for (int i = 1; i <= 3; i++)
+                    {
+                        AsientosPrimera.Add(i + "A");
+                        AsientosPrimera.Add(i + "B");
+                        AsientosPrimera.Add(i + "C");
+                        AsientosPrimera.Add(i + "D");
+                        AsientosPrimera.Add(i + "E");
+                        AsientosPrimera.Add(i + "F");
+                    }
+                }
+                else if (tipoAvion == 3)
+                {
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        AsientosPrimera.Add(i + "A");
+                        AsientosPrimera.Add(i + "B");
+                        AsientosPrimera.Add(i + "C");
+                        AsientosPrimera.Add(i + "D");
+                    }
+                }
+                esPrimera = AsientosPrimera.Contains(asiento);
+                if (esPrimera == true)
+                {
+                    precioTiquete = precio_primera;
+                }
+                else precioTiquete = precio_economica;
+            }
+            return precioTiquete;
+        }
 
     }
-
 }
